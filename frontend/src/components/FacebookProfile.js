@@ -11,7 +11,7 @@ export default function FacebookProfile() {
     fetch("http://localhost:3001/mensagens")
       .then((response) => response.json())
       .then((data) => {
-        setPostList(data); // Atualiza a lista de posts
+        setPostList(data); 
       })
       .catch((error) => {
         console.error("Erro ao carregar mensagens:", error);
@@ -21,17 +21,17 @@ export default function FacebookProfile() {
   useEffect(() => {
     carregarPosts();
     const intervalo = setInterval(carregarPosts, 5000);
-    return () => clearInterval(intervalo); // Limpa o intervalo ao desmontar o componente
+    return () => clearInterval(intervalo); 
   }, []);
 
   const handlePost = (e) => {
-    setPost(e.target.value); // Atualiza o estado do texto do post
+    setPost(e.target.value); 
   };
 
   const sendPost = () => {
-    if (!post.trim()) return; // Previne envio de post vazio
+    if (!post.trim()) return; 
 
-    console.log("Enviando post:", post); // Depuração - mostra o post que será enviado
+    console.log("Enviando post:", post); 
 
     fetch("http://localhost:3001/mensagens", {
       method: "POST",
@@ -47,8 +47,8 @@ export default function FacebookProfile() {
         return res.json();
       })
       .then(() => {
-        setPost(""); // Limpa o campo de texto após o envio
-        carregarPosts(); // Atualiza a lista de posts
+        setPost(""); 
+        carregarPosts(); 
       })
       .catch((err) => {
         console.error("Erro ao enviar post:", err);
